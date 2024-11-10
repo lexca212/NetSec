@@ -12,16 +12,18 @@ install_fail2ban() {
     echo "Configuring Fail2ban for SSH brute force protection..."
     sudo cat <<EOL >> /etc/fail2ban/jail.local
 
-[DEFAULT]
-bantime = 10m
-findtime = 10m
-maxretry = 5
+#[DEFAULT]
+#bantime = 10m
+#findtime = 10m
+#maxretry = 5
 
 [sshd]
 enabled = true
-port = 22
-logpath = %(sshd_log)s
-backend = auto
+port = ssh
+#logpath = %(sshd_log)s
+#backend = auto
+maxretry = 2
+bantime = 3600
 
 EOL
 
